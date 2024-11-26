@@ -1,0 +1,167 @@
+﻿@{
+    ViewData["Title"] = "ContactUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<section class="breadcrumbs-custom-inset">
+    <div class="breadcrumbs-custom context-dark bg-overlay-39">
+        <div class="container">
+            <h2 class="breadcrumbs-custom-title" style="letter-spacing: 1px;">Contact Us</h2>
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Contact Us</li>
+            </ul>
+        </div>
+        <div class="box-position" style="background-image: url(/images/bg-breadcrumbs.jpg); background-size: cover;
+    background-repeat: no-repeat;"></div>
+    </div>
+</section>
+<!-- Contact information-->
+<section class="section section-md section-first bg-default">
+    <div class="container">
+        <div class="row row-30 justify-content-center">
+            <div class="col-sm-8 col-md-6 col-lg-4">
+                <article class="box-contacts">
+                    <div class="box-contacts-body">
+                        <div class="box-contacts-icon fl-bigmug-line-cellphone55"></div>
+                        <div class="box-contacts-decor"></div>
+                        <p class="box-contacts-link"><a href="https://wa.me/+923352386386?text=Hi,%20I%20want%20to%20order%20a%20donerkebab!%20Visit%20our%20website%20at%20https%3A%2F%2Fwww.lovedonerkebab.com">+92 335 2386386</a></p>
+                        <p class="box-contacts-link"><a href="https://wa.me/+923352386386?text=Hi,%20I%20want%20to%20order%20a%20donerkebab!%20Visit%20our%20website%20at%20https%3A%2F%2Fwww.lovedonerkebab.com">+92 335 2386386</a></p>
+                    </div>
+                </article>
+            </div>
+            <div class="col-sm-8 col-md-6 col-lg-4">
+                <article class="box-contacts">
+                    <div class="box-contacts-body">
+                        <div class="box-contacts-icon fl-bigmug-line-up104"></div>
+                        <div class="box-contacts-decor"></div>
+                        <p class="box-contacts-link"><a href="https://www.google.com/maps?q=222a,+F1+Kotli+Rd,+Sector+F-1,+New+Mirpur+City,+10250" target="_blank">4222a, F1 Kotli Rd, Sector F1 New Mirpur City, 10250</a></p>
+                    </div>
+                </article>
+            </div>
+            <div class="col-sm-8 col-md-6 col-lg-4">
+                <article class="box-contacts">
+                    <div class="box-contacts-body">
+                        <div class="box-contacts-icon fl-bigmug-line-chat55"></div>
+                        <div class="box-contacts-decor"></div>
+                        <p class="box-contacts-link"><a href="mailto:afzaalhaider013@gmail.com" target="_blank">afzaalhaider013@gmail.com</a></p>
+                        <p class="box-contacts-link"><a href="mailto:donner@ldk.edu.pk" target="_blank">donner@ldk.edu.pk</a></p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form and Gmap-->
+<section class="section section-md section-last bg-default text-md-left">
+    <div class="container">
+        <div class="row row-50">
+            <!-- Map Section -->
+            <div class="col-lg-6 col-md-12">
+                <a href="https://www.google.com/maps?q=222a,+F1+Kotli+Rd,+Sector+F-1,+New+Mirpur+City,+10250" target="_blank">
+                    <img src="~/images/google-map.jpg" alt="google-map" width="100%" height="auto" />
+                </a>
+            </div>
+            
+            <!-- Form Section -->
+            <div class="col-lg-6 col-md-12">
+                <style>
+                    .col-lg-6 {
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        padding: 10px;
+                    }
+                    @@media (max-width: 768px) {
+                        .row-50 {
+                            flex-direction: column; /* Stack items vertically */
+                        }
+                        .col-lg-6 {
+                            margin-bottom: 20px; /* Add spacing between sections */
+                        }
+                    }
+                </style>
+                <h4 class="text-spacing-50">Contact Form</h4>
+                <form id="contactForm" class="rd-form rd-mailform" method="post">
+                    <div class="row row-14 gutters-14">
+                        <div class="col-sm-6">
+                            <div class="form-wrap">
+                                <input class="form-input" id="contact-first-name" type="text" name="firstName" placeholder="First Name">
+                                <small class="error-message" style="color: red; display: none;">Please enter your first name.</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-wrap">
+                                <input class="form-input" id="contact-last-name" type="text" name="lastName" placeholder="Last Name">
+                                <small class="error-message" style="color: red; display: none;">Please enter your last name.</small>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-wrap">
+                                <input class="form-input" id="contact-email" type="email" name="email" placeholder="E-mail">
+                                <small class="error-message" style="color: red; display: none;">Please enter your valid email address.</small>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-wrap">
+                                <textarea class="form-input" id="contact-message" name="message" placeholder="Your message"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button button-primary button-pipaluk" type="button" onclick="validateAndSend()">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+    function validateAndSend() {
+        // Form field references
+        const firstName = document.getElementById("contact-first-name");
+        const lastName = document.getElementById("contact-last-name");
+        const email = document.getElementById("contact-email");
+        const message = document.getElementById("contact-message").value;
+        const websiteLink = "https://lovedonerkebab.com"; // Replace with your website link
+        const whatsappNumber = "+923352386386"; // Replace with your WhatsApp number
+
+        let valid = true;
+
+        // Validate each required field
+        [firstName, lastName, email].forEach(input => {
+            const error = input.nextElementSibling;
+            if (input.value.trim() === "") {
+                error.style.display = "block";
+                valid = false;
+            } else {
+                error.style.display = "none";
+            }
+        });
+
+        // If all fields are filled, send data to WhatsApp
+        if (valid) {
+            const whatsappMessage = `I visited your website: ${websiteLink}\n` +
+                `First Name: ${firstName.value}\n` +
+                `Last Name: ${lastName.value}\n` +
+                `Email: ${email.value}\n` +
+                `Message: ${message}`;
+
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappUrl, "_blank");
+
+            // Clear form fields after a short delay
+            setTimeout(() => {
+                document.getElementById("contactForm").reset();
+            }, 500); // Adjust the delay if needed
+        }
+    }
+</script>
+
+
+
+<!-- Javascript-->
+<script src="~/js/core.min.js"></script>
+<script src="~/js/script.js"></script>

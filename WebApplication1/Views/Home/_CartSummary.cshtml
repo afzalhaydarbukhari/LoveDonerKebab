@@ -1,0 +1,10 @@
+﻿@model IEnumerable<WebApplication1.Models.CartItems>
+
+@{
+    var cartItemCount = Model?.Sum(item => item.Qty) ?? 0;
+}
+
+<a href="/Cart/ViewCart">
+    <i class="fa fa-shopping-cart"></i>
+    Cart (<span>@cartItemCount</span>)
+</a>

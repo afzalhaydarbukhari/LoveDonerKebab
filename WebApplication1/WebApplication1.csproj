@@ -1,0 +1,282 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\images\LoveDonerKebab\**" />
+    <Content Remove="wwwroot\images\LoveDonerKebab\**" />
+    <EmbeddedResource Remove="wwwroot\images\LoveDonerKebab\**" />
+    <None Remove="wwwroot\images\LoveDonerKebab\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap.min.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap.min.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.js" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.js.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.js" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.js.map" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js" />
+    <Content Remove="C:\Users\AFZAAL\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\Cart&amp;LoginForm.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="bootstrap" Version="5.3.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.33" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\bat\phpmailer\class.phpmailer.php" />
+    <None Include="wwwroot\bat\phpmailer\class.pop3.php" />
+    <None Include="wwwroot\bat\phpmailer\class.smtp.php" />
+    <None Include="wwwroot\bat\phpmailer\PHPMailerAutoload.php" />
+    <None Include="wwwroot\bat\rd-mailform.php" />
+    <None Include="wwwroot\bat\rd-mailform.tpl" />
+    <None Include="wwwroot\bat\rd-search.php" />
+    <None Include="wwwroot\bat\reCaptcha.php" />
+    <None Include="wwwroot\bat\ReCaptcha\autoload.php" />
+    <None Include="wwwroot\bat\ReCaptcha\ReCaptcha.php" />
+    <None Include="wwwroot\bat\ReCaptcha\RequestMethod.php" />
+    <None Include="wwwroot\bat\ReCaptcha\RequestMethod\Curl.php" />
+    <None Include="wwwroot\bat\ReCaptcha\RequestMethod\CurlPost.php" />
+    <None Include="wwwroot\bat\ReCaptcha\RequestMethod\Post.php" />
+    <None Include="wwwroot\bat\ReCaptcha\RequestMethod\Socket.php" />
+    <None Include="wwwroot\bat\ReCaptcha\RequestMethod\SocketPost.php" />
+    <None Include="wwwroot\bat\ReCaptcha\RequestParameters.php" />
+    <None Include="wwwroot\bat\ReCaptcha\Response.php" />
+    <None Include="wwwroot\css\bootstrap.css" />
+    <None Include="wwwroot\css\fonts.css" />
+    <None Include="wwwroot\css\style.css" />
+    <None Include="wwwroot\fonts\fl-bigmug-line.eot" />
+    <None Include="wwwroot\fonts\fl-bigmug-line.svg" />
+    <None Include="wwwroot\fonts\fl-bigmug-line.ttf" />
+    <None Include="wwwroot\fonts\fl-bigmug-line.woff" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.eot" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.ttf" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\fonts\FontAwesome.otf" />
+    <None Include="wwwroot\fonts\lg.eot" />
+    <None Include="wwwroot\fonts\lg.svg" />
+    <None Include="wwwroot\fonts\lg.ttf" />
+    <None Include="wwwroot\fonts\lg.woff" />
+    <None Include="wwwroot\fonts\Linearicons.eot" />
+    <None Include="wwwroot\fonts\Linearicons.svg" />
+    <None Include="wwwroot\fonts\Linearicons.ttf" />
+    <None Include="wwwroot\fonts\Linearicons.woff" />
+    <None Include="wwwroot\fonts\Mangaba.otf" />
+    <None Include="wwwroot\fonts\Mangaba.ttf" />
+    <None Include="wwwroot\fonts\materialdesignicons-webfont.eot" />
+    <None Include="wwwroot\fonts\materialdesignicons-webfont.svg" />
+    <None Include="wwwroot\fonts\materialdesignicons-webfont.ttf" />
+    <None Include="wwwroot\fonts\materialdesignicons-webfont.woff" />
+    <None Include="wwwroot\fonts\materialdesignicons-webfont.woff2" />
+    <None Include="wwwroot\fonts\MaterialIcons-Regular.eot" />
+    <None Include="wwwroot\fonts\MaterialIcons-Regular.ijmap" />
+    <None Include="wwwroot\fonts\MaterialIcons-Regular.ttf" />
+    <None Include="wwwroot\fonts\MaterialIcons-Regular.woff" />
+    <None Include="wwwroot\fonts\MaterialIcons-Regular.woff2" />
+    <None Include="wwwroot\images\about-1-519x446.jpg" />
+    <None Include="wwwroot\images\ajax-loader.gif" />
+    <None Include="wwwroot\images\banner\background-03-1920x310.jpg" />
+    <None Include="wwwroot\images\banner\background-03-3840x620.jpg" />
+    <None Include="wwwroot\images\banner\background-04-1920x60.jpg" />
+    <None Include="wwwroot\images\banner\background-04-3840x120.jpg" />
+    <None Include="wwwroot\images\banner\foreground-03-1600x310.png" />
+    <None Include="wwwroot\images\banner\foreground-03-3200x620.png" />
+    <None Include="wwwroot\images\banner\foreground-04-1600x60.png" />
+    <None Include="wwwroot\images\banner\foreground-04-3200x120.png" />
+    <None Include="wwwroot\images\bg-parallax-1.jpg" />
+    <None Include="wwwroot\images\bg-parallax-2.jpg" />
+    <None Include="wwwroot\images\bg-pattern-boxed.png" />
+    <None Include="wwwroot\images\bg-top-1.png" />
+    <None Include="wwwroot\images\bg-top.png" />
+    <None Include="wwwroot\images\favicon.ico" />
+    <None Include="wwwroot\images\gallery-image-1-129x120.jpg" />
+    <None Include="wwwroot\images\gallery-original-1-1200x800.jpg" />
+    <None Include="wwwroot\images\gallery-original-10-1200x800.jpg" />
+    <None Include="wwwroot\images\gallery-original-11-800x1200.jpg" />
+    <None Include="wwwroot\images\gallery-original-2-1200x800.jpg" />
+    <None Include="wwwroot\images\gallery-original-6-1200x800.jpg" />
+    <None Include="wwwroot\images\gallery-original-7-800x1200.jpg" />
+    <None Include="wwwroot\images\gallery-original-9-800x1200.jpg" />
+    <None Include="wwwroot\images\gmap_marker.png" />
+    <None Include="wwwroot\images\gmap_marker_active.png" />
+    <None Include="wwwroot\images\grid-gallery-1-370x303.jpg" />
+    <None Include="wwwroot\images\grid-gallery-2-370x303.jpg" />
+    <None Include="wwwroot\images\grid-gallery-3-370x303.jpg" />
+    <None Include="wwwroot\images\grid-gallery-4-370x303.jpg" />
+    <None Include="wwwroot\images\grid-gallery-5-370x303.jpg" />
+    <None Include="wwwroot\images\grid-gallery-6-370x303.jpg" />
+    <None Include="wwwroot\images\home-banner-1-570x715.jpg" />
+    <None Include="wwwroot\images\home-sidebar-394x255.jpg" />
+    <None Include="wwwroot\images\ie8-panel\warning_bar_0000_us.jpg" />
+    <None Include="wwwroot\images\isotope-loader.png" />
+    <None Include="wwwroot\images\LDK.jpg" />
+    <None Include="wwwroot\images\loading.gif" />
+    <None Include="wwwroot\images\logo-inverse-196x42.png" />
+    <None Include="wwwroot\images\mCSB_buttons.png" />
+    <None Include="wwwroot\images\preloader.gif" />
+    <None Include="wwwroot\images\preloader.png" />
+    <None Include="wwwroot\images\product-mini-1-108x100.png" />
+    <None Include="wwwroot\images\product-mini-2-108x100.png" />
+    <None Include="wwwroot\images\project-1-420x308.jpg" />
+    <None Include="wwwroot\images\project-2-420x308.jpg" />
+    <None Include="wwwroot\images\project-3-420x308.jpg" />
+    <None Include="wwwroot\images\project-4-420x308.jpg" />
+    <None Include="wwwroot\images\project-5-420x308.jpg" />
+    <None Include="wwwroot\images\quote-jean.png" />
+    <None Include="wwwroot\images\slider-1-1920x729 old.jpg" />
+    <None Include="wwwroot\images\slider-1-1920x729.jpg" />
+    <None Include="wwwroot\images\slider-2-1920x729.jpg" />
+    <None Include="wwwroot\images\team-1-370x406.jpg" />
+    <None Include="wwwroot\images\team-2-370x406.jpg" />
+    <None Include="wwwroot\images\team-3-370x406.jpg" />
+    <None Include="wwwroot\images\user-16-100x100.jpg" />
+    <None Include="wwwroot\images\user-17-100x100.jpg" />
+    <None Include="wwwroot\images\user-18-100x100.jpg" />
+    <None Include="wwwroot\images\video-play.png" />
+    <None Include="wwwroot\images\vimeo-play.png" />
+    <None Include="wwwroot\images\website\gallery-image-1-129x120.jpg" />
+    <None Include="wwwroot\images\website\gallery-image-2-129x120.jpg" />
+    <None Include="wwwroot\images\website\gallery-image-3-129x120.jpg" />
+    <None Include="wwwroot\images\website\gallery-image-4-129x120.jpg" />
+    <None Include="wwwroot\images\website\grid-gallery-1-370x303.jpg" />
+    <None Include="wwwroot\images\website\grid-gallery-2-370x303.jpg" />
+    <None Include="wwwroot\images\website\grid-gallery-3-370x303.jpg" />
+    <None Include="wwwroot\images\website\grid-gallery-4-370x303.jpg" />
+    <None Include="wwwroot\images\website\grid-gallery-5-370x303.jpg" />
+    <None Include="wwwroot\images\website\grid-gallery-6-370x303.jpg" />
+    <None Include="wwwroot\images\website\home-sidebar-394x255.jpg" />
+    <None Include="wwwroot\images\website\LDK.jpg" />
+    <None Include="wwwroot\images\website\product-5-270x280.png" />
+    <None Include="wwwroot\images\website\product-6-270x280.png" />
+    <None Include="wwwroot\images\website\product-7-270x280.png" />
+    <None Include="wwwroot\images\website\product-8-270x280.png" />
+    <None Include="wwwroot\images\website\product-mini-1-108x100.png" />
+    <None Include="wwwroot\images\website\product-mini-2-108x100.png" />
+    <None Include="wwwroot\images\website\slider-3-1920x729.jpg" />
+    <None Include="wwwroot\images\website\team-1-370x406.jpg" />
+    <None Include="wwwroot\images\website\team-2-370x406.jpg" />
+    <None Include="wwwroot\images\website\team-3-370x406.jpg" />
+    <None Include="wwwroot\images\youtube-play.png" />
+    <None Include="wwwroot\images\_blank.png" />
+    <None Include="wwwroot\js\core.min.js" />
+    <None Include="wwwroot\js\html5shiv.min.js" />
+    <None Include="wwwroot\js\pointer-events.min.js" />
+    <None Include="wwwroot\js\script.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+    <None Include="wwwroot\lib\jquery\LICENSE.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\items\" />
+  </ItemGroup>
+
+</Project>
