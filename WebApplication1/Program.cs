@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
@@ -12,12 +11,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<RemoveOldCartsService>();  // Register RemoveOldCartsService as Scoped
-builder.Services.AddHostedService(provider =>
-    provider.GetRequiredService<RemoveOldCartsService>());  // Use factory to resolve RemoveOldCartsService
-
-
-
 // Add session support
 builder.Services.AddDistributedMemoryCache(); // Use in-memory cache for session storage
 builder.Services.AddSession(options =>
@@ -27,7 +20,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true; // Required for GDPR compliance
 });
 
-// Add HttpContextAccessor (if needed in background service or other services)
+// Add HttpContextAccessor
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
@@ -47,8 +40,11 @@ app.UseSession(); // Enable session middleware
 app.UseAuthorization();
 
 // Configure endpoints
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 app.Run();
