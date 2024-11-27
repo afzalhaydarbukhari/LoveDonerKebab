@@ -9,6 +9,7 @@ using WebApplication1.Models;
 using static WebApplication1.Controllers.HomeController;
 using System.Threading.Tasks;
 using System.Data.SqlTypes;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace WebApplication1.Controllers
 {
@@ -21,25 +22,39 @@ namespace WebApplication1.Controllers
         {
             _db = db;
             _logger = logger;
+
+           
         }
         
         [HttpGet]
         public IActionResult ViewCart()
         {
+
             // Fetch all items in the cart from the database
             var cartItems = _db.CartItems.ToList();
 
             // Pass the list directly to the view
             return View(cartItems);
         }
-        
+
+        public string GetUserIpAddress()
+        {
+            var ipaddress= HttpContext.Connection.RemoteIpAddress?.ToString();
+
+            ViewBag.IpAddress = ipaddress;
+
+            return ipaddress;
+        }
 
         [HttpPost]
-        public IActionResult AddToCart(int itemId, int quantity,string productName)
+        public IActionResult AddToCart(
+            int itemId, int quantity,string productName)
         {
             
             try
             {
+
+                var ipaddress = GetUserIpAddress();
 
                 // Step 1: Fetch ItemId and ItemName from Inv_Items table
                 var item = _db.items
@@ -54,12 +69,15 @@ namespace WebApplication1.Controllers
                 var cartItem = new CartItems
                 {
 
-                    ItemID = item.ItemId, 
-                    ItemName = item.ItemName, 
+                    ItemID = item.ItemId,
+                    ItemName = item.ItemName,
                     Price = 1000M,
                     Qty = 1,
+                    CartStatus = "Pending",
                     ItemImage = "/images/big-doner-burger.jpg",
                     ClientID = 1,
+                    IPAddress = ipaddress,
+                    Date = DateTime.UtcNow
                 };
 
                 _db.CartItems.Add(cartItem);
@@ -81,6 +99,14 @@ namespace WebApplication1.Controllers
         }
 
 
+        public void RemoveOldCarts()
+        {
+            var expirationDate = DateTime.UtcNow.AddDays(-7);
+            var oldCarts = _db.CartItems.Where(c => c.Date < expirationDate);
+
+            _db.CartItems.RemoveRange(oldCarts);
+            _db.SaveChanges();
+        }
         [HttpGet]
         public IActionResult Clientreg()
         {
@@ -129,6 +155,8 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult Index(string category = null)
         {
+
+            var ipaddress = GetUserIpAddress();
             // Fetch all items including their categories
             var items = _db.items.Include(i => i.Category).ToList();
 
