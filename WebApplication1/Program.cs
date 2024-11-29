@@ -23,6 +23,11 @@ builder.Services.AddSession(options =>
 // Add HttpContextAccessor
 builder.Services.AddHttpContextAccessor();
 
+
+// Register the cleanup service
+builder.Services.AddHostedService<CartCleanupService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline

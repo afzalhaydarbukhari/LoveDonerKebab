@@ -104,8 +104,12 @@ namespace WebApplication1.Controllers
             var expirationDate = DateTime.UtcNow.AddDays(-7);
             var oldCarts = _db.CartItems.Where(c => c.Date < expirationDate);
 
-            _db.CartItems.RemoveRange(oldCarts);
-            _db.SaveChanges();
+            
+            if (oldCarts.Any())
+            {
+                _db.CartItems.RemoveRange(oldCarts);
+                _db.SaveChanges();
+            }
         }
         [HttpGet]
         public IActionResult Clientreg()
