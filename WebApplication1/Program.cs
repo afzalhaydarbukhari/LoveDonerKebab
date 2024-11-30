@@ -11,22 +11,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add session support
-builder.Services.AddDistributedMemoryCache(); // Use in-memory cache for session storage
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout
-    options.Cookie.HttpOnly = true; // Secure the session cookie
-    options.Cookie.IsEssential = true; // Required for GDPR compliance
-});
-
 // Add HttpContextAccessor
 builder.Services.AddHttpContextAccessor();
 
-
 // Register the cleanup service
 builder.Services.AddHostedService<CartCleanupService>();
-
 
 var app = builder.Build();
 
@@ -41,7 +30,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseSession(); // Enable session middleware
 app.UseAuthorization();
 
 // Configure endpoints

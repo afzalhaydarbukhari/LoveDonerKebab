@@ -18,7 +18,6 @@ public class CartCleanupService : IHostedService, IDisposable
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        // Schedule the cleanup task to run daily
         _timer = new Timer(CleanupCart, null, TimeSpan.Zero, TimeSpan.FromHours(24));
         return Task.CompletedTask;
     }
@@ -28,12 +27,13 @@ public class CartCleanupService : IHostedService, IDisposable
         using (var scope = _serviceProvider.CreateScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<DataDbContext>();
-            var expirationDate = DateTime.UtcNow.AddDays(-7);
+            var expirationDate = DateTime.UtcNow.AddDays(-30);
 
-            var oldCarts = dbContext.CartItems.Where(c => c.Date != null && c.Date < expirationDate);
-            if (oldCarts.Any())
+            var expiredItems = dbContext.CartItems.Where(c => c.Date < expirationDate).ToList();
+
+            if (expiredItems.Any())
             {
-                dbContext.CartItems.RemoveRange(oldCarts);
+                dbContext.CartItems.RemoveRange(expiredItems);
                 dbContext.SaveChanges();
             }
         }

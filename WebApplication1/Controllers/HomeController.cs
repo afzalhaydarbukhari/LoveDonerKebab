@@ -68,7 +68,6 @@ namespace WebApplication1.Controllers
                 }
                 var cartItem = new CartItems
                 {
-
                     ItemID = item.ItemId,
                     ItemName = item.ItemName,
                     Price = 1000M,
