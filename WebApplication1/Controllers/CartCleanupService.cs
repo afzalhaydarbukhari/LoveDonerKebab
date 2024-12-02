@@ -27,7 +27,7 @@ public class CartCleanupService : IHostedService, IDisposable
         using (var scope = _serviceProvider.CreateScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<DataDbContext>();
-            var expirationDate = DateTime.UtcNow.AddDays(-30);
+            var expirationDate = DateTime.UtcNow.AddDays(-30);  
 
             var expiredItems = dbContext.CartItems.Where(c => c.Date < expirationDate).ToList();
 

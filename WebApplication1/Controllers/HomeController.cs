@@ -17,13 +17,15 @@ namespace WebApplication1.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly DataDbContext _db;
+        private readonly MacAddressHelper _macAddressHelper;
 
-        public HomeController(DataDbContext db, ILogger<HomeController> logger)
+        public HomeController(DataDbContext db, ILogger<HomeController> logger, MacAddressHelper macAddressHelper)
         {
             _db = db;
             _logger = logger;
+            _macAddressHelper = macAddressHelper;
 
-           
+
         }
         
         [HttpGet]
@@ -37,14 +39,14 @@ namespace WebApplication1.Controllers
             return View(cartItems);
         }
 
-        public string GetUserIpAddress()
-        {
-            var ipaddress= HttpContext.Connection.RemoteIpAddress?.ToString();
+        //public string GetUserIpAddress()
+        //{
+        //    var ipaddress= HttpContext.Connection.RemoteIpAddress?.ToString();
 
-            ViewBag.IpAddress = ipaddress;
+        //    ViewBag.IpAddress = ipaddress;
 
-            return ipaddress;
-        }
+        //    return ipaddress;
+        //}
 
         [HttpPost]
         public IActionResult AddToCart(
@@ -54,7 +56,8 @@ namespace WebApplication1.Controllers
             try
             {
 
-                var ipaddress = GetUserIpAddress();
+                //var ipaddress = GetUserIpAddress();
+                var macAddress = MacAddressHelper.GetMacAddress();
 
                 // Step 1: Fetch ItemId and ItemName from Inv_Items table
                 var item = _db.items
@@ -75,7 +78,8 @@ namespace WebApplication1.Controllers
                     CartStatus = "Pending",
                     ItemImage = "/images/big-doner-burger.jpg",
                     ClientID = 1,
-                    IPAddress = ipaddress,
+                    //IPAddress = ipaddress,
+                    MacAddress = macAddress,
                     Date = DateTime.UtcNow
                 };
 
@@ -83,6 +87,7 @@ namespace WebApplication1.Controllers
                 _db.SaveChanges();
 
                 TempData["SuccessMessage"] = "Add to Cart successful!";
+                /*return Ok("Item added to cart with MAC Address: " + macAddress);*/
             }
             catch (DbUpdateException ex)
             {
@@ -159,7 +164,12 @@ namespace WebApplication1.Controllers
         public IActionResult Index(string category = null)
         {
 
-            var ipaddress = GetUserIpAddress();
+            //var ipaddress = GetUserIpAddress();
+
+            // Get the server's MAC address
+            var macAddress = MacAddressHelper.GetMacAddress();
+            ViewData["MacAddress"] = macAddress;
+
             // Fetch all items including their categories
             var items = _db.items.Include(i => i.Category).ToList();
 
@@ -169,7 +179,7 @@ namespace WebApplication1.Controllers
                 // Ensure the comparison is case-insensitive and accounts for multiple-word categories
                 items = items.Where(i => i.Category.CategoryName.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
             }
-            var remoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+            //var remoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
             return View(items);
         }

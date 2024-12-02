@@ -30,7 +30,10 @@ namespace WebApplication1.Models
         public string? CartStatus { get; set; }
 
         public DateTime? Date { get; set; }
-        public string? IPAddress { get; set; }
+        //public string? IPAddress { get; set; }
+
+        public string? MacAddress { get; set; }
+
 
     }
 }

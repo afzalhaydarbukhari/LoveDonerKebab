@@ -15,7 +15,10 @@ builder.Services.AddDbContext<DataDbContext>(options =>
 builder.Services.AddHttpContextAccessor();
 
 // Register the cleanup service
-builder.Services.AddHostedService<CartCleanupService>();
+//builder.Services.AddHostedService<CartCleanupService>();
+
+// Register MacAddressHelper as a singleton
+builder.Services.AddSingleton<MacAddressHelper>();
 
 var app = builder.Build();
 

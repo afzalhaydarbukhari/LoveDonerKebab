@@ -43,11 +43,13 @@
             <header class="section page-header">
                 <!-- RD Navbar-->
                 @{
-                   
-                    var ipAddress = Context.Connection.RemoteIpAddress?.ToString();
+
+                //var ipaddress = Context.Connection.RemoteIpAddress?.ToString();
+
+                var macAddress = MacAddressHelper.GetMacAddress(); // Helper method to fetch server's MAC address
                     decimal clientId = 1;
                     // Replace with the logic to get the current client's ID
-                    var cartItems = _db.CartItems.Where(c => c.ClientID == clientId && c.IPAddress==ipAddress).ToList();
+                var cartItems = _db.CartItems.Where(c => c.ClientID == clientId && c.MacAddress == macAddress).ToList();
                     var totalItems = cartItems.Count();
                     var totalPrice = cartItems.Sum(item => (item.Price ?? 0) * (item.Qty ?? 1));
                 }
