@@ -28,33 +28,34 @@ namespace WebApplication1.Controllers
 
         }
         
-        [HttpGet]
-        public IActionResult ViewCart()
-        {
-            // Fetch all items in the cart from the database
-            //var cartItems = _db.CartItems.ToList();
-
-            // Get the server's MAC address
-            var macAddress = MacAddressHelper.GetMacAddress();
-            string cartStatus = "Posted/Active";
-
-            // Fetch items matching CartStatus and MAC Address
-            var cartItems = _db.CartItems
-                               .Where(c => c.CartStatus == cartStatus && c.MacAddress == macAddress)
-                               .ToList();
-            
-            // Pass the list directly to the view
-            return View(cartItems);
-        }
-
-        //public string GetUserIpAddress()
+        //[HttpGet]
+        //public IActionResult ViewCart()
         //{
-        //    var ipaddress= HttpContext.Connection.RemoteIpAddress?.ToString();
+        //    // Fetch all items in the cart from the database
+        //    //var cartItems = _db.CartItems.ToList();
 
-        //    ViewBag.IpAddress = ipaddress;
+        //    // Get the server's MAC address
+        //    var macAddress = MacAddressHelper.GetMacAddress();
+        //    string cartStatus = "Posted/Active";
 
-        //    return ipaddress;
+        //    // Fetch items matching CartStatus and MAC Address
+        //    var cartItems = _db.CartItems
+        //                       .Where(c => c.CartStatus == cartStatus && c.MacAddress == macAddress)
+        //                       .ToList();
+            
+        //    // Pass the list directly to the view
+        //    return View(cartItems);
         //}
+
+       
+        public IActionResult RemoveFromCart(int Cartid)
+        {
+            var record = _db.CartItems.Where(c=> c.CartID==Cartid).FirstOrDefault();
+            _db.CartItems.Remove(record);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
         public IActionResult AddToCart(
@@ -133,70 +134,75 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [HttpPost]
+      
         public IActionResult Checkout(Client client, decimal TotalPrice)
         {
             if (ModelState.IsValid)
             {
-
-                // Assign the total price from the form to the client object
-                client.TotalPrice = TotalPrice;
-                _db.clients.Add(client);
-                _db.SaveChanges();
-
-                // Get the generated ClientId
-                var clientId = client.Clientid;
-
-                // Create a new Inv_Sale record
-                var invSale = new Sales
+                using (var transaction = _db.Database.BeginTransaction())
                 {
-                    ClientId = clientId,
-                    SaleDate = DateTime.Now,
-                    Modifier = "System",
-                    LastModified = DateTime.Now,
-                    Payment = TotalPrice,
-                    SaleId = 0,
-                    Status = "Pending"
-                };
-
-                // Save Inv_Sale data
-                _db.sales.Add(invSale);
-                _db.SaveChanges();
-
-                // Get the generated SaleId
-                var saleId = invSale.SaleId;
-
-                // Step 3: Fetch CartItems for the client and extract `ItemName`
-                var cartItems = _db.CartItems
-                                   .Where(c => c.ClientID == clientId)
-                                   .ToList();
-
-                // Step 4: Loop through CartItems and save their details to Inv_SaledItems
-                foreach (var cartItem in cartItems)
-                {
-                    var soldItem = new SoldItems
+                    try
                     {
-                        SaleId = saleId, // Link to the generated SaleId from Inv_Sale
-                        ItemId = cartItem.ItemID ?? 0, // Use ItemID from CartItems
-                        ItemName = cartItem.ItemName, // Use ItemName from CartItems
-                        Qty = cartItem.Qty ?? 0, // Use Qty from CartItems
-                        UnitPrice = cartItem.Price ?? 0, // Use UnitPrice from CartItems
-                        NetPrice = (cartItem.Price ?? 0) * (cartItem.Qty ?? 1) // Calculate NetPrice
-                    };
+                        client.TotalPrice = TotalPrice;
+                        _db.clients.Add(client);
+                        _db.SaveChanges();
 
-                    _db.soldItems.Add(soldItem);
+                        var clientId = client.Clientid;
+
+                        var invSale = new Sales
+                        {
+                            ClientId = clientId,
+                            SaleDate = DateTime.Now,
+                            Modifier = "System",
+                            LastModified = DateTime.Now,
+                            Payment = TotalPrice,
+                            SaleId = 0,
+                            Status = "Posted"
+                        };
+                        _db.sales.Add(invSale);
+                        _db.SaveChanges();
+
+                        var saleId = invSale.SaleId;
+                        var macAddress = MacAddressHelper.GetMacAddress();
+
+                        var cartItems = _db.CartItems
+                                           .Where(c => c.MacAddress == macAddress)
+                                           .ToList();
+
+                        foreach (var cartItem in cartItems)
+                        {
+                            var soldItem = new SoldItems
+                            {
+                                SaleId = saleId,
+                                ItemId = cartItem.ItemID ?? 0,
+                                ItemName = cartItem.ItemName,
+                                Qty = cartItem.Qty ?? 0,
+                                UnitPrice = cartItem.Price ?? 0,
+                                NetPrice = (cartItem.Price ?? 0) * (cartItem.Qty ?? 1)
+                            };
+
+                            _db.soldItems.Add(soldItem);
+                        }
+
+                        _db.SaveChanges();
+
+                        _db.CartItems.RemoveRange(cartItems);
+                        _db.SaveChanges();
+
+                        transaction.Commit();
+
+                        TempData["Message"] = "Checkout Successful!";
+                        return RedirectToAction("Index");
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        TempData["ErrorMessage"] = $"Checkout failed: {ex.Message}";
+                        return View("Cart");
+                    }
                 }
-
-                // Save all sale items to the Inv_SaledItems table
-                _db.SaveChanges();
-
-                // Step 5: Clear the cart after checkout
-                _db.CartItems.RemoveRange(cartItems);
-                _db.SaveChanges();
-
-                TempData["Message"] = "Checkout Successful!";
-                return RedirectToAction("Index");
             }
+
             TempData["ErrorMessage"] = "Checkout failed. Please try again!";
             return View("Cart");
         }
@@ -205,12 +211,7 @@ namespace WebApplication1.Controllers
         public IActionResult Index(string category = null)
         {
 
-            //var ipaddress = GetUserIpAddress();
-
-            // Get the server's MAC address
-            //var macAddress = MacAddressHelper.GetMacAddress();
-            //ViewData["MacAddress"] = macAddress;
-
+           
             // Fetch all items including their categories
             var items = _db.items.Include(i => i.Category).ToList();
 
