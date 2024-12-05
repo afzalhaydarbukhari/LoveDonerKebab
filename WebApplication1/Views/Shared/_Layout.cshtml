@@ -44,12 +44,12 @@
                 <!-- RD Navbar-->
                 @{
 
-                //var ipaddress = Context.Connection.RemoteIpAddress?.ToString();
+               
 
-                var macAddress = MacAddressHelper.GetMacAddress(); // Helper method to fetch server's MAC address
+                    var macAddress = MacAddressHelper.GetMacAddress(); 
                     decimal clientId = 1;
                     // Replace with the logic to get the current client's ID
-                var cartItems = _db.CartItems.Where(c => c.ClientID == clientId && c.MacAddress == macAddress).ToList();
+                    var cartItems = _db.CartItems.Where(c =>c.MacAddress == macAddress).ToList();
                     var totalItems = cartItems.Count();
                     var totalPrice = cartItems.Sum(item => (item.Price ?? 0) * (item.Qty ?? 1));
                 }
@@ -125,8 +125,8 @@
 
                                                             <!-- Bottom (Remove Button) -->
                                                             <form method="post" asp-action="RemoveFromCart" asp-controller="Home" class="mb-0">
-                                                                <input type="hidden" name="itemId" value="@item.ItemID" />
-                                                                <input type="hidden" name="sessionId" value="@item.CartSessionId" />
+                                                                 @* <input type="hidden" name="itemId" value="@item.ItemID" /> *@
+                                                                <input type="hidden" name="Cartid" value="@item.CartID" />
                                                                 <button type="submit" class="btn btn-danger btn-sm">Remove</button>
                                                             </form>
                                                            

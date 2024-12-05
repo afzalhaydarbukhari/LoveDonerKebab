@@ -32,6 +32,10 @@ namespace WebApplication1.Models
         [Column(TypeName = "decimal(18, 0)")]
         public decimal NetPrice { get; set; }
 
+        // Navigation property for Sales
+        //[ForeignKey("SaleId")]
+        //public Sales Sales { get; set; }
+
         // Uncomment and define additional fields if needed in the future
         // [Column(TypeName = "decimal(18, 1)")]
         // public decimal? UnitSalePrice { get; set; }

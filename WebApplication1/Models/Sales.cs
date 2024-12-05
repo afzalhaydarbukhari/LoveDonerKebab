@@ -24,6 +24,9 @@ namespace WebApplication1.Models
 
         [ForeignKey("ClientId")]
         public Client clients { get; set; }
+
+        // Navigation property for SoldItems
+        //public ICollection<SoldItems> SoldItems { get; set; }
     }
 }
 
