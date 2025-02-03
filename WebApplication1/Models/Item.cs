@@ -11,8 +11,6 @@ namespace WebApplication1.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal ItemId { get; set; }
 
-        //public int Clientid { get; set; }
-
         [Required]
         [StringLength(50, ErrorMessage = "Item name must not exceed 50 characters")]
         public string? ItemName { get; set; }
@@ -34,8 +32,10 @@ namespace WebApplication1.Models
         [NotMapped]
         public IFormFile? ImageFile { get; set; }
         public string? ImagePath { get; set; }
-        public Category Category { get; set; }
-        public List<Category>? categorylist { get; set; } 
+
+        [ForeignKey("CategoryId")]
+        public Category? Category { get; set; }
 
     }
 }
+

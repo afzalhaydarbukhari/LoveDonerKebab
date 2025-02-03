@@ -9,7 +9,7 @@ using WebApplication1.Data;
 public class CartCleanupService : IHostedService, IDisposable
 {
     private readonly IServiceProvider _serviceProvider;
-    private Timer _timer;
+    private Timer? _timer;
 
     public CartCleanupService(IServiceProvider serviceProvider)
     {
@@ -22,13 +22,12 @@ public class CartCleanupService : IHostedService, IDisposable
         return Task.CompletedTask;
     }
 
-    private void CleanupCart(object state)
+    private void CleanupCart(object? state)
     {
         using (var scope = _serviceProvider.CreateScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<DataDbContext>();
             var expirationDate = DateTime.UtcNow.AddDays(-30);  
-
             var expiredItems = dbContext.CartItems.Where(c => c.Date < expirationDate).ToList();
 
             if (expiredItems.Any())

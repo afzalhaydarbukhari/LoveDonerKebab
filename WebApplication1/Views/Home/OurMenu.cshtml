@@ -1,293 +1,46 @@
-﻿
-
-@{
+﻿@{
     ViewData["Title"] = "OurMenu";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    @* <link rel="stylesheet" href="~/css/cat-menu.css" /> *@
+    @* <link href="~/css/category-icon.css" rel="stylesheet" /> *@
+    @* <link href="~/css/product-card.css" rel="stylesheet" /> *@
 
-<!-- Breadcrumbs -->
-<section class="breadcrumbs-custom-inset">
-    <div class="breadcrumbs-custom context-dark bg-overlay-33">
-        <div class="container">
-            <h2 class="breadcrumbs-custom-title" style="letter-spacing: 1px;">Our Menu</h2>
-            <ul class="breadcrumbs-custom-path">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Our Menu</li>
-            </ul>
-        </div>
-        <div class="box-position" style="background-image: url(/images/bg-breadcrumbs.jpg); background-size: cover;
-        background-repeat: no-repeat;"></div>
-    </div>
-</section>
-<!-- Base typography-->
-<section class="section section-sm bg-default text-left">
-    <div class="container">
-        <h3 class="text-center">Our Menu</h3>
-        <div class="row row-30">
-            <style>
-                .menu-item img {
-                    width: 250px;
-                    height: 250px;
-                    object-fit: cover; /* Ensures the image covers the area without distortion */
-                    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for effects */
-                }
-
-                    .menu-item img:hover {
-                        transform: scale(1.1); /* Slightly enlarges the image on hover */
-                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
-                    }
-
-            </style>
-
-            <!-- Menu Item 1 -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item1.jpg" class="img-fluid" alt="Menu Item 1">
-                    <h5 class="menu-item-name">Zinger Burger</h5>
-                    <p class="menu-item-description">Crispy fried chicken in a fresh bun with lettuce and mayo.</p>
-                </div>
-            </div>
-            <!-- Menu Item 2 -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item2.jpg" class="img-fluid" alt="Menu Item 2">
-                    <h5 class="menu-item-name">Egg Burger</h5>
-                    <p class="menu-item-description">Grilled egg sandwich with a soft bun and veggies.</p>
-                </div>
-            </div>
-            <!-- Menu Item 3 -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item3.jpg" class="img-fluid" alt="Menu Item 3">
-                    <h5 class="menu-item-name">Cheese Burger</h5>
-                    <p class="menu-item-description">Juicy beef patty with melted cheese in a sesame seed bun.</p>
-                </div>
-            </div>
-            <!-- Menu Item 4 -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item4.jpg" class="img-fluid" alt="Menu Item 4">
-                    <h5 class="menu-item-name">Grilled Chicken Sandwich</h5>
-                    <p class="menu-item-description">Tender grilled chicken with a dash of spice in a fresh bun.</p>
-                </div>
-            </div>
-            <!-- Menu Item 5 -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item5.jpg" class="img-fluid" alt="Menu Item 5">
-                    <h5 class="menu-item-name">BBQ Beef Burger</h5>
-                    <p class="menu-item-description">Delicious beef patty with BBQ sauce and cheddar cheese.</p>
-                </div>
-            </div>
-            <!-- Menu Item 6 -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item6.jpg" class="img-fluid" alt="Menu Item 6">
-                    <h5 class="menu-item-name">Veggie Delight</h5>
-                    <p class="menu-item-description">Fresh veggies served in a crispy whole-grain bun.</p>
-                </div>
-            </div>
-            <!-- Row 2 -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item7.jpg" class="img-fluid" alt="Menu Item 7">
-                    <h5 class="menu-item-name">Chicken Nuggets</h5>
-                    <p class="menu-item-description">Crispy, bite-sized chicken nuggets with a side of fries.</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item8.jpg" class="img-fluid" alt="Menu Item 7">
-                    <h5 class="menu-item-name">Chicken Nuggets</h5>
-                    <p class="menu-item-description">Crispy, bite-sized chicken nuggets with a side of fries.</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item9.jpg" class="img-fluid" alt="Menu Item 7">
-                    <h5 class="menu-item-name">Chicken Nuggets</h5>
-                    <p class="menu-item-description">Crispy, bite-sized chicken nuggets with a side of fries.</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item10.jpg" class="img-fluid" alt="Menu Item 7">
-                    <h5 class="menu-item-name">Chicken Nuggets</h5>
-                    <p class="menu-item-description">Crispy, bite-sized chicken nuggets with a side of fries.</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item11.jpg" class="img-fluid" alt="Menu Item 7">
-                    <h5 class="menu-item-name">Chicken Nuggets</h5>
-                    <p class="menu-item-description">Crispy, bite-sized chicken nuggets with a side of fries.</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item12.jpg" class="img-fluid" alt="Menu Item 7">
-                    <h5 class="menu-item-name">Chicken Nuggets</h5>
-                    <p class="menu-item-description">Crispy, bite-sized chicken nuggets with a side of fries.</p>
-                </div>
-            </div>
-            
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item13.jpg" class="img-fluid" alt="Menu Item 7">
-                    <h5 class="menu-item-name">Chicken Nuggets</h5>
-                    <p class="menu-item-description">Crispy, bite-sized chicken nuggets with a side of fries.</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item14.jpg" class="img-fluid" alt="Menu Item 7">
-                    <h5 class="menu-item-name">Chicken Nuggets</h5>
-                    <p class="menu-item-description">Crispy, bite-sized chicken nuggets with a side of fries.</p>
-                </div>
-            </div>
-
-            <!-- More Menu Items -->
-            <!-- Repeat similarly for each row, creating 5 columns per row -->
-            <!-- Add more rows and columns to fill 6 rows and 5 columns -->
-            <!-- Row 6, Column 5 -->
-
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item15.jpg" class="img-fluid" alt="Menu Item 30">
-                    <h5 class="menu-item-name">Fish Fillet Burger</h5>
-                    <p class="menu-item-description">Crispy fish fillet served in a soft bun with tartar sauce.</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item16.jpg" class="img-fluid" alt="Menu Item 7">
-                    <h5 class="menu-item-name">Chicken Nuggets</h5>
-                    <p class="menu-item-description">Crispy, bite-sized chicken nuggets with a side of fries.</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item17.jpg" class="img-fluid" alt="Menu Item 7">
-                    <h5 class="menu-item-name">Chicken Nuggets</h5>
-                    <p class="menu-item-description">Crispy, bite-sized chicken nuggets with a side of fries.</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="menu-item">
-                    <img src="~/images/items/item18.jpg" class="img-fluid" alt="Menu Item 7">
-                    <h5 class="menu-item-name">Chicken Nuggets</h5>
-                    <p class="menu-item-description">Crispy, bite-sized chicken nuggets with a side of fries.</p>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</section>
-
-
-@* <section class="section section-sm section-first bg-default text-left">
-    <div class="container">
-        <div class="row row-40 flex-lg-row-reverse justify-content-xl-between">
-            <div class="col-xl-5 d-none d-xl-block">
-                <div class="offset-left-xl-45">
-                    <h1>H1 Heading</h1>
-                    <h2>H2 Heading</h2>
-                    <h3>H3 Heading</h3>
-                    <h4>H4 Heading</h4>
-                    <h5>H5 Heading</h5>
-                    <h6>H6 Heading</h6>
-                </div>
-            </div>
-            <div class="col-xl-7">
-                <ul class="list-xl box-typography">
-                    <li>
-                        <h1>H1 Heading</h1>
-                        <p>Welcome to our wonderful world. We sincerely hope that each and every user entering our website will find exactly what he/she is looking for. With advanced features of activating account and new login widgets, you will definitely have a great experience of using our web page.</p>
-                    </li>
-                    <li>
-                        <h2>H2 Heading</h2>
-                        <p>Welcome to our wonderful world. We sincerely hope that each and every user entering our website will find exactly what he/she is looking for. With advanced features of activating account and new login widgets, you will definitely have a great experience of using our web page.</p>
-                    </li>
-                    <li>
-                        <h3>H3 Heading</h3>
-                        <p>Welcome to our wonderful world. We sincerely hope that each and every user entering our website will find exactly what he/she is looking for. With advanced features of activating account and new login widgets, you will definitely have a great experience of using our web page.</p>
-                    </li>
-                    <li>
-                        <h4>H4 Heading</h4>
-                        <p>Welcome to our wonderful world. We sincerely hope that each and every user entering our website will find exactly what he/she is looking for. With advanced features of activating account and new login widgets, you will definitely have a great experience of using our web page.</p>
-                    </li>
-                    <li>
-                        <h5>H5 Heading</h5>
-                        <p>Welcome to our wonderful world. We sincerely hope that each and every user entering our website will find exactly what he/she is looking for. With advanced features of activating account and new login widgets, you will definitely have a great experience of using our web page.</p>
-                    </li>
-                    <li>
-                        <h6>H6 Heading</h6>
-                        <p>Welcome to our wonderful world. We sincerely hope that each and every user entering our website will find exactly what he/she is looking for. With advanced features of activating account and new login widgets, you will definitely have a great experience of using our web page.</p>
-                    </li>
+</head>
+<body>
+    <!--Our Menu-->
+    <section class="breadcrumbs-custom-inset">
+        <div class="breadcrumbs-custom context-dark bg-overlay-33">
+            <div class="container">
+                <h2 class="breadcrumbs-custom-title" style="letter-spacing: 1px;">Our Menu</h2>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Our Menu</li>
                 </ul>
             </div>
+            <div class="box-position" style="background-image: url(/images/bg-breadcrumbs.jpg); background-size: cover;
+        background-repeat: no-repeat;"></div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- HTML Text Elements-->
-<section class="section section-sm bg-default text-left">
-    <div class="container">
-        <h3>HTML Text Elements</h3>
-        <p class="text-block">
-            Welcome to our wonderful world. This is a bold text
-            <mark>This is a highlighted text</mark>We sincerely hope that each and every user entering our website will find exactly what he/she is looking for. With advanced features of activating account and new login<span class="tooltip-custom" data-toggle="tooltip" data-placement="top" title="Default text">Tooltips</span>widgets, you will definitely have a great experience of using our web page.<span class="text-strike">This is a strikethrough text</span><span class="text-underline">This is an underlined text.</span><a href="#">Link</a><a class="link-hover" href="#">Hover link</a><a class="link-active" href="#">Press link</a>
-        </p>
-    </div>
-</section>
-
-<!-- Lists and Blockquote-->
-<section class="section section-sm section-last bg-default text-left">
-    <div class="container">
-        <div class="row row-60 row-md-80 row-lg-90">
-            <div class="col-lg-8 col-xl-6">
-                <h3>Ordered & Unordered Lists</h3>
-                <div class="row row-sm row-30">
-                    <div class="col-sm-6">
-                        <ul class="list-marked">
-                            <li>Consulting</li>
-                            <li>Customer Service</li>
-                            <li>Innovation</li>
-                            <li>Management</li>
-                            <li>Ethics</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="list-ordered">
-                            <li>Consulting</li>
-                            <li>Customer Service</li>
-                            <li>Innovation</li>
-                            <li>Management</li>
-                            <li>Ethics</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8 col-xl-6">
-                <div class="offset-left-xl-65">
-                    <h3>Blockquote</h3>
-                    <!-- Quote Classic-->
-                    <article class="quote-classic">
-                        <div class="quote-classic-text">
-                            <p class="q">We use only trusted, verified content, so you can believe our every word.</p>
-                        </div>
-                        <h6 class="quote-classic-cite">Catherine Williams</h6>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> *@
+    
 
 
-<!-- Javascript-->
-<script src="~/js/core.min.js"></script>
-<script src="~/js/script.js"></script>
+
+    <!-- Javascript-->
+    <script src="~/js/core.min.js"></script>
+    <script src="~/js/script.js"></script>
+    @* <script src="~/js/cat-menu.js"></script> *@
+    @* <script src="~/js/model.js"></script> *@
+
+
+</body>
+
+
+
+
+
 
 
 

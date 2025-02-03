@@ -1,4 +1,6 @@
+using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 using WebApplication1.Data;
 using WebApplication1.Models;
 
@@ -15,10 +17,14 @@ builder.Services.AddDbContext<DataDbContext>(options =>
 builder.Services.AddHttpContextAccessor();
 
 // Register the cleanup service
-//builder.Services.AddHostedService<CartCleanupService>();
+builder.Services.AddHostedService<CartCleanupService>();
 
 // Register MacAddressHelper as a singleton
 builder.Services.AddSingleton<MacAddressHelper>();
+
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("StripeSettings"));
+StripeConfiguration.ApiKey = builder.Configuration["StripeSettings:SecretKey"];
+builder.Services.AddApplicationInsightsTelemetry();
 
 var app = builder.Build();
 

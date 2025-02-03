@@ -7,10 +7,22 @@ namespace WebApplication1.Models
     public class Category
     {
         [Key]
-        public int? CategoryId { get; set; }
-        public string? CategoryName { get; set; }
+        public int CategoryId { get; set; } // Primary Key
 
-        public int? Root {  get; set; }
-        
+        [MaxLength(500)]
+        public string? CategoryName { get; set; } // Nullable
+
+        public bool? IsChild { get; set; } // Nullable
+
+        public int? Root { get; set; } // Nullable (for parent-child relationship)
+
+        public bool? UBLDiscount { get; set; } // Nullable
+
+        public bool? HBLDiscount { get; set; } // Nullable
+        public ICollection<Inv_Items>? InvItems { get; set; } // Navigation Property
+
     }
+
 }
+
+

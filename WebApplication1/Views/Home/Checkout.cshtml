@@ -1,0 +1,26 @@
+﻿@model WebApplication1.Models.CheckoutFormModel
+
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Payments</h1>
+    <hr />
+    <form asp-action="CreateCheckoutSession" method="post" class="form-group">
+        <div class="form-group">
+            <label asp-for="ProductName" class="control-label"></label>
+            <input type="text" placeholder="Type here" asp-for="ProductName" class="form-control" />
+            <span asp-validation-for="ProductName" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Checkout your payments</button>
+    </form>
+    <br />
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/core.min.js"></script>
+    <script src="~/js/script.js"></script>
+}

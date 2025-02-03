@@ -23,7 +23,7 @@ namespace WebApplication1.Models
         public string? Serving { get; set; }
 
         [ForeignKey("ClientId")]
-        public Client clients { get; set; }
+        public Client? clients { get; set; }
 
         // Navigation property for SoldItems
         //public ICollection<SoldItems> SoldItems { get; set; }

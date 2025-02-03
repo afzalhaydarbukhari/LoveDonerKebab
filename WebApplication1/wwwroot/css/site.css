@@ -1,0 +1,152 @@
+﻿/* Reset all default styles */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar wrapper */
+.rd-navbar-wrap {
+    position: relative;
+    height: auto;
+}
+
+/* Navbar main styling */
+.rd-navbar-modern {
+    background: #fff;
+    z-index: 1000;
+}
+
+.rd-navbar-main-outer {
+    border-bottom: 1px solid #eee;
+}
+
+.rd-navbar-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.rd-navbar-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rd-navbar-brand img {
+    max-width: 196px;
+    height: auto;
+}
+
+.rd-navbar-main-element {
+    flex: 1;
+}
+
+.rd-navbar-nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.rd-navbar-nav {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.rd-nav-item {
+    margin: 0;
+}
+
+.rd-nav-link {
+    display: block;
+    padding: 5px 10px;
+    color: #333;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.rd-navbar-basket-wrap {
+    position: relative;
+}
+
+.rd-navbar-basket {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* Cart dropdown styling */
+.cart-inline {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+    .cart-inline.active {
+        display: block; /* Show when active */
+    }
+
+/* Mobile styles */
+@media (max-width: 991px) {
+    .rd-navbar-toggle {
+        display: block;
+        font-size: 24px;
+        background: none;
+        cursor: pointer;
+    }
+
+    .rd-navbar-nav-wrap {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: #fff;
+        padding: 10px;
+        display: none; /* Hidden by default */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .rd-navbar-nav-wrap.active {
+            display: block; /* Show when toggled */
+        }
+
+    .rd-navbar-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .rd-navbar-basket-wrap {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1001;
+    }
+}
+
+/* Focus states for accessibility */
+.rd-navbar-toggle:focus,
+.rd-navbar-basket:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}

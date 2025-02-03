@@ -8,10 +8,10 @@ namespace WebApplication1.Models
     {
         [Key]
         public int BSID { get; set; }
-        public string BankName { get; set; }
-        public int? BIN { get; set; }
-        public string Card_Cat { get; set; }
-        public string CardType { get; set; }
-        public int? DiscountPercent { get; set; }
+        public string? BankName { get; set; }
+        public int BIN { get; set; }
+        public string? Card_Cat { get; set; }
+        public string? CardType { get; set; }
+        public int DiscountPercent { get; set; }
     }
 }

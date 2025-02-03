@@ -1,0 +1,35 @@
+﻿.category-btn {
+    transition: all 0.3s ease;
+}
+
+    .category-btn:hover {
+        transform: translateY(-2px);
+    }
+
+.product-item .card {
+    transition: all 0.3s ease;
+}
+
+    .product-item .card:hover {
+        transform: translateY(-5px);
+    }
+
+.product-hover-content {
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .product-hover-content {
+    opacity: 1 !important;
+}
+
+
+@media (max-width: 576px) {
+    .category-wrapper {
+        min-width: 120px !important;
+    }
+
+    .category-btn {
+        font-size: 0.9rem;
+        padding: 0.5rem !important;
+    }
+}

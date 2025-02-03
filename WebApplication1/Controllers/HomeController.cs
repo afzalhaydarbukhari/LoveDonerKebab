@@ -2,14 +2,10 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Net;
+using Stripe.Checkout;
+using System.Security.Cryptography;
 using WebApplication1.Data;
 using WebApplication1.Models;
-using static WebApplication1.Controllers.HomeController;
-using System.Threading.Tasks;
-using System.Data.SqlTypes;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace WebApplication1.Controllers
 {
@@ -21,33 +17,13 @@ namespace WebApplication1.Controllers
 
         public HomeController(DataDbContext db, ILogger<HomeController> logger, MacAddressHelper macAddressHelper)
         {
-            _db = db;
+            _db = db ?? throw new ArgumentNullException(nameof(db));
             _logger = logger;
             _macAddressHelper = macAddressHelper;
 
 
         }
         
-        //[HttpGet]
-        //public IActionResult ViewCart()
-        //{
-        //    // Fetch all items in the cart from the database
-        //    //var cartItems = _db.CartItems.ToList();
-
-        //    // Get the server's MAC address
-        //    var macAddress = MacAddressHelper.GetMacAddress();
-        //    string cartStatus = "Posted/Active";
-
-        //    // Fetch items matching CartStatus and MAC Address
-        //    var cartItems = _db.CartItems
-        //                       .Where(c => c.CartStatus == cartStatus && c.MacAddress == macAddress)
-        //                       .ToList();
-            
-        //    // Pass the list directly to the view
-        //    return View(cartItems);
-        //}
-
-       
         public IActionResult RemoveFromCart(int Cartid)
         {
             var record = _db.CartItems.Where(c=> c.CartID==Cartid).FirstOrDefault();
@@ -57,21 +33,18 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
+        //GET request API
         [HttpPost]
-        public IActionResult AddToCart(
-            int itemId, int quantity,string productName)
+        public IActionResult AddToCart(int itemId, int quantity,string productName)
         {
-            
             try
             {
-
-                //var ipaddress = GetUserIpAddress();
                 var macAddress = MacAddressHelper.GetMacAddress();
 
                 // Step 1: Fetch ItemId and ItemName from Inv_Items table
                 var item = _db.items
                     .Where(i => i.ItemName == productName)
-                    .Select(i => new { i.ItemId, i.ItemName })
+                    .Select(i => new { i.ItemId, i.ItemName,i.RecentUnitPrice,i.ImagePath })
                     .FirstOrDefault();
 
                 if (item == null)
@@ -82,12 +55,11 @@ namespace WebApplication1.Controllers
                 {
                     ItemID = item.ItemId,
                     ItemName = item.ItemName,
-                    Price = 1000M,
+                    Price = item.RecentUnitPrice,
                     Qty = 1,
                     CartStatus = "Pending",
-                    ItemImage = "/images/big-doner-burger.jpg",
+                    ItemImage = item.ImagePath,
                     ClientID = 1,
-                    //IPAddress = ipaddress,
                     MacAddress = macAddress,
                     Date = DateTime.UtcNow
                 };
@@ -96,7 +68,6 @@ namespace WebApplication1.Controllers
                 _db.SaveChanges();
 
                 TempData["SuccessMessage"] = "Add to Cart successful!";
-                /*return Ok("Item added to cart with MAC Address: " + macAddress);*/
             }
             catch (DbUpdateException ex)
             {
@@ -108,8 +79,34 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("Index");
 
-
         }
+
+
+        [HttpPost]
+        public IActionResult UpdateCartQuantity([FromBody] CartUpdateRequest request)
+        {
+            if (request == null || request.CartId <= 0 || request.Quantity <= 0)
+            {
+                return Json(new { success = false, message = "Invalid request data." });
+            }
+
+            // Find the cart item by CartID
+            var cartItem = _db.CartItems.FirstOrDefault(c => c.CartID == request.CartId);
+            if (cartItem == null)
+            {
+                return Json(new { success = false, message = "CartItem not found." });
+            }
+
+            // Update the quantity
+            cartItem.Qty = request.Quantity;
+            _db.SaveChanges();
+
+            // Calculate the updated total for the item
+            var updatedTotal = (cartItem.Qty ?? 1) * (cartItem.Price ?? 0);
+
+            return Json(new { success = true, updatedTotal });
+        }
+
 
 
         public void RemoveOldCarts()
@@ -134,7 +131,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-      
+        [HttpPost]      
         public IActionResult Checkout(Client client, decimal TotalPrice)
         {
             if (ModelState.IsValid)
@@ -207,25 +204,58 @@ namespace WebApplication1.Controllers
             return View("Cart");
         }
 
+        //[HttpGet]
+        //public IActionResult Index(string? category = null)
+        //{
+        //    // Fetch all items including their categories
+        //    var items = _db.items.Include(i => i.Category).ToList();
+
+        //    // Filter the items if a category is provided
+        //    if (!string.IsNullOrEmpty(category) && category.ToLower() != "all")
+        //    {
+        //        // Ensure the comparison is case-insensitive and accounts for multiple-word categories
+        //        items = items.Where(i => i.Category.CategoryName.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
+        //    }
+
+        //    return View(items);
+        //}
+
         [HttpGet]
-        public IActionResult Index(string category = null)
+        public IActionResult Index(string? category = null)
         {
-
-           
-            // Fetch all items including their categories
-            var items = _db.items.Include(i => i.Category).ToList();
-
-            // Filter the items if a category is provided
-            if (!string.IsNullOrEmpty(category) && category.ToLower() != "all")
+            try
             {
-                // Ensure the comparison is case-insensitive and accounts for multiple-word categories
-                items = items.Where(i => i.Category.CategoryName.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
-            }
-            //var remoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+                //var items = _db.items.ToList();
+                var items = _db.items.AsNoTracking().Include(i => i.Category).ToList();
+                foreach (var item in items)
+                {
+                    if (item.Category == null)
+                    {
+                        item.Category = new Category { CategoryName = "Unknown" };  // Prevent null reference issues
+                    }
+                }
 
-            return View(items);
+                if (!string.IsNullOrEmpty(category))
+                {
+                    string lowerCategory = category.ToLower();
+                    items = items
+                        .Where(i => i.Category != null &&
+                                    !string.IsNullOrEmpty(i.Category.CategoryName) &&
+                                    i.Category.CategoryName.ToLower() == lowerCategory)
+                        .ToList();
+                }
+
+                return View(items);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching items: " + ex.Message);
+                return View(new List<Inv_Items>()); // Return an empty list to prevent crashes
+            }
         }
-       
+
+
+
         [HttpPost]
         public IActionResult TestAddSale(string productName)
         {
@@ -297,20 +327,57 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index"); // Redirect to Index
         }
 
-        //AboutUs
+        // AboutUs
         public IActionResult AboutUs()
         {
             return View();
         }
-        //Typography
+        // Typography
         public IActionResult OurMenu()
         {
             return View();
         }
-        //ContactUS
+        // ContactUS
         public IActionResult ContactUs()
         {
             return View();
+        }
+        // Payments
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+        // Payments
+        [HttpPost]
+        public IActionResult CreateCheckoutSession(CheckoutFormModel model)
+        {
+            var options = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string> { "card" },
+                SuccessUrl = "https://yourwebsite.com/success",
+                CancelUrl = "https://yourwebsite.com/cancel",
+                LineItems = new List<SessionLineItemOptions>
+            {
+                new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        UnitAmount = 2000L,
+                        Currency = "PKR",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = model.ProductName
+                        }
+                    },
+                    Quantity = 1,
+                }
+            },
+                Mode = "payment",
+            };
+
+            var service = new SessionService();
+            var session = service.Create(options);
+            return Redirect(session.Url);
         }
         public override void OnActionExecuting(ActionExecutingContext db)
         {

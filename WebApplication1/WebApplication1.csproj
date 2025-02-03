@@ -69,9 +69,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.12.2" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.33" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.18" />
+    <PackageReference Include="Stripe.net" Version="47.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -96,6 +99,7 @@
     <None Include="wwwroot\css\bootstrap.css" />
     <None Include="wwwroot\css\fonts.css" />
     <None Include="wwwroot\css\style.css" />
+    <None Include="wwwroot\css\layout.css" />
     <None Include="wwwroot\fonts\fl-bigmug-line.eot" />
     <None Include="wwwroot\fonts\fl-bigmug-line.svg" />
     <None Include="wwwroot\fonts\fl-bigmug-line.ttf" />
@@ -272,10 +276,6 @@
     <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
     <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
     <None Include="wwwroot\lib\jquery\LICENSE.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\items\" />
   </ItemGroup>
 
 </Project>
