@@ -204,26 +204,21 @@ namespace WebApplication1.Controllers
             return View("Cart");
         }
 
-        //[HttpGet]
-        //public IActionResult Index(string? category = null)
-        //{
-        //    // Fetch all items including their categories
-        //    var items = _db.items.Include(i => i.Category).ToList();
-
-        //    // Filter the items if a category is provided
-        //    if (!string.IsNullOrEmpty(category) && category.ToLower() != "all")
-        //    {
-        //        // Ensure the comparison is case-insensitive and accounts for multiple-word categories
-        //        items = items.Where(i => i.Category.CategoryName.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
-        //    }
-
-        //    return View(items);
-        //}
 
         [HttpGet]
         public IActionResult Index(string category = null)
         {
-
+            try
+            {
+                //var items = _db.items.ToList();
+                var items = _db.items.Include(i => i.Category).ToList();
+                foreach (var item in items)
+                {
+                    if (item.Category == null)
+                    {
+                        item.Category = new Category { CategoryName = "Unknown" };  // Prevent null reference issues
+                    }
+                }
 
             // Fetch all items including their categories
             var items = _db.items.Include(i => i.Category).ToList();
