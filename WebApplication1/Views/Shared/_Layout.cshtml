@@ -105,7 +105,7 @@
                                 </button>
                                 <div class="cart-inline">
                                     <div class="cart-inline-header">
-                                        <h5 class="cart-inline-title">In cart: <span>0</span> Products</h5>
+                                        <h5 class="cart-inline-title">In cart: <span id="cart-total-items">0</span> Products</h5>
                                         <h6 class="cart-inline-title">Total price: <span id="total-price">0.00</span></h6>
                                     </div>
                                     <div class="cart-inline-body">
@@ -193,7 +193,7 @@
                                                 </div>
 
                                                 <!-- Hidden Field for Total Price -->
-                                                <input type="hidden" name="TotalPrice" id="form-total-price" value="@totalPrice" />
+                                                <input type="hidden" name="TotalPrice" id="form-total-price" value="0" />
                                                 <input type="hidden" id="total-items" value="@totalItems" />
 
                                                 <!-- Checkout Button -->

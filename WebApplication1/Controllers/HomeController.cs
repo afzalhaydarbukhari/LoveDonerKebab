@@ -17,7 +17,7 @@ namespace WebApplication1.Controllers
 
         public HomeController(DataDbContext db, ILogger<HomeController> logger, MacAddressHelper macAddressHelper)
         {
-            _db = db ?? throw new ArgumentNullException(nameof(db));
+            _db = db;
             _logger = logger;
             _macAddressHelper = macAddressHelper;
 
@@ -204,24 +204,9 @@ namespace WebApplication1.Controllers
             return View("Cart");
         }
 
-        //[HttpGet]
-        //public IActionResult Index(string? category = null)
-        //{
-        //    // Fetch all items including their categories
-        //    var items = _db.items.Include(i => i.Category).ToList();
-
-        //    // Filter the items if a category is provided
-        //    if (!string.IsNullOrEmpty(category) && category.ToLower() != "all")
-        //    {
-        //        // Ensure the comparison is case-insensitive and accounts for multiple-word categories
-        //        items = items.Where(i => i.Category.CategoryName.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
-        //    }
-
-        //    return View(items);
-        //}
 
         [HttpGet]
-        public IActionResult Index(string? category = null)
+        public IActionResult Index(string category = null)
         {
             try
             {
@@ -235,24 +220,20 @@ namespace WebApplication1.Controllers
                     }
                 }
 
-                if (!string.IsNullOrEmpty(category))
-                {
-                    string lowerCategory = category.ToLower();
-                    items = items
-                        .Where(i => i.Category != null &&
-                                    !string.IsNullOrEmpty(i.Category.CategoryName) &&
-                                    i.Category.CategoryName.ToLower() == lowerCategory)
-                        .ToList();
-                }
+            // Fetch all items including their categories
+            var items = _db.items.Include(i => i.Category).ToList();
 
-                return View(items);
-            }
-            catch (Exception ex)
+            // Filter the items if a category is provided
+            if (!string.IsNullOrEmpty(category) && category.ToLower() != "all")
             {
-                Console.WriteLine("Error fetching items: " + ex.Message);
-                return View(new List<Inv_Items>()); // Return an empty list to prevent crashes
+                // Ensure the comparison is case-insensitive and accounts for multiple-word categories
+                items = items.Where(i => i.Category.CategoryName.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
             }
+            //var remoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+
+            return View(items);
         }
+
 
 
 
