@@ -21,9 +21,13 @@
             }
         });
 
-        // Update the overall total items and price in the UI
-        document.querySelector(".cart-inline-header span").innerText = totalItems;
+        // Update the UI for total price and total items
         document.getElementById("total-price").innerText = totalPrice.toFixed(2);
+        document.getElementById("cart-total-items").innerText = totalItems;
+
+        // Sync the hidden input fields with total values
+        document.getElementById("form-total-price").value = totalPrice.toFixed(2);
+        document.getElementById("form-total-items").value = totalItems;
     };
 
     // Attach event listeners to increment and decrement buttons
@@ -32,7 +36,6 @@
             e.preventDefault();
 
             const cartID = btn.getAttribute("data-item-id");
-            const price = parseFloat(btn.getAttribute("data-price"));
             const isIncrement = btn.classList.contains("btn-increment");
 
             if (!cartID) {
@@ -72,6 +75,11 @@
                     console.error("Error updating cart:", error);
                 });
         });
+    });
+
+    // Ensure the total price and items are updated before form submission
+    document.getElementById("Clientreg").addEventListener("submit", function () {
+        updateCartSummary();
     });
 
     // Initial cart summary update
