@@ -226,7 +226,7 @@ namespace WebApplication1.Controllers
             try
             {
                 //var items = _db.items.ToList();
-                var items = _db.items.AsNoTracking().Include(i => i.Category).ToList();
+                var items = _db.items.Include(i => i.Category).ToList();
                 foreach (var item in items)
                 {
                     if (item.Category == null)
